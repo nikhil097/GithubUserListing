@@ -12,7 +12,5 @@ public interface GithubApiClient {
 
     @GET("/users")
     Single<List<User>> getUsers();
-    
-
 
 }
