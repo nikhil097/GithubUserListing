@@ -75,4 +75,33 @@ public class ApiService {
     }
 
 
+
+    @SuppressLint("CheckResult")
+    public void getUserDetails(String userName,final ResponseCallbackInterface<User> callbackInterface)
+    {
+        githubApiClient.getUserDetails(userName).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new SingleObserver<User>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(User user) {
+
+                        callbackInterface.success(user);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+
+
+    }
+
+
 }
