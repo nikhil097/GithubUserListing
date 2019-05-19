@@ -67,6 +67,16 @@ public class User implements Serializable {
 
     String updated_at;
 
+    String errorMessage;
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
     public String getLogin() {
         return login;
     }

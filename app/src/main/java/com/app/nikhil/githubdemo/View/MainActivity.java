@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.app.nikhil.githubdemo.Adapter.UserAdapter;
 import com.app.nikhil.githubdemo.Models.User;
@@ -35,15 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
         usersRv=findViewById(R.id.usersRv);
 
-        fetchUsers();
+        fetchUsers("100");
 
     }
 
 
 
-    public void fetchUsers()
+    public void fetchUsers(String perPageItems)
     {
-        apiService.getUsers(new ResponseCallbackInterface<List<User>>() {
+        apiService.getUsers(perPageItems,new ResponseCallbackInterface<List<User>>() {
             @Override
             public void success(List<User> users) {
 
@@ -53,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void failure(List<User> users) {
+
+                Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
 
                 User user=usersList.get(position);
-                Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+                Intent intent=new Intent(MainActivity.this,UserDetailsActivity.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
 

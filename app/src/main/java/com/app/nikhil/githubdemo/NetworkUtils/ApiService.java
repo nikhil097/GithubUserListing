@@ -2,6 +2,7 @@ package com.app.nikhil.githubdemo.NetworkUtils;
 
 import android.annotation.SuppressLint;
 
+import com.app.nikhil.githubdemo.Models.Repo;
 import com.app.nikhil.githubdemo.Models.User;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -48,9 +49,9 @@ public class ApiService {
 
 
     @SuppressLint("CheckResult")
-    public void getUsers(final ResponseCallbackInterface<List<User>> callbackInterface)
+    public void getUsers(String perPageItems,final ResponseCallbackInterface<List<User>> callbackInterface)
     {
-        githubApiClient.getUsers().subscribeOn(Schedulers.io())
+        githubApiClient.getUsers(perPageItems).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new SingleObserver<List<User>>() {
                     @Override
@@ -68,11 +69,41 @@ public class ApiService {
                     @Override
                     public void onError(Throwable e) {
 
+                        callbackInterface.failure(null);
+
                     }
                 });
 
-
     }
+
+
+    @SuppressLint("CheckResult")
+    public void getRepos(String userName, final ResponseCallbackInterface<List<Repo>> callbackInterface)
+    {
+        githubApiClient.getRepos(userName).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new SingleObserver<List<Repo>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(List<Repo> repos) {
+
+                        callbackInterface.success(repos);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        callbackInterface.failure(null);
+
+                    }
+                });
+    }
+
 
 
 
@@ -97,11 +128,19 @@ public class ApiService {
                     @Override
                     public void onError(Throwable e) {
 
+                        User user=new User();
+                        user.setErrorMessage(e.getMessage());
+                        callbackInterface.failure(user);
+
                     }
                 });
 
 
     }
+
+
+
+
 
 
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.UserDetailsActivity">
+
+    <ProgressBar
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/detailsLoadingProgressBar"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/followersTv"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/followingTv"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/followersTv"/>
+
+
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/userDetailImageView"
+        android:layout_margin="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/followingTv"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userDetailNameTv"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintLeft_toRightOf="@+id/userDetailImageView"
+        app:layout_constraintTop_toBottomOf="@+id/followingTv"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:maxLines="1"
+        android:text="No Bio Available!"
+        android:ellipsize="end"
+        android:id="@+id/userBioTv"
+        app:layout_constraintLeft_toRightOf="@+id/userDetailImageView"
+        app:layout_constraintTop_toBottomOf="@+id/userDetailNameTv"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintLeft_toRightOf="@+id/userDetailImageView"
+        android:id="@+id/userDetailLocationTv"
+        app:layout_constraintTop_toBottomOf="@+id/userBioTv"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repos"
+        android:id="@+id/reposTv"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/userDetailImageView"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userReposRv"
+        app:layout_constraintTop_toBottomOf="@id/reposTv"
+        android:layout_margin="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>
